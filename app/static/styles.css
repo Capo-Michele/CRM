@@ -361,3 +361,71 @@ body {
 .create-client-row + tr button {
     min-width: 200px;
 }
+
+.search_button{
+    margin-top: 5px;
+}
+
+.show_clients{
+    flex: auto;
+}
+
+.search-field {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 320px;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+    margin-bottom: 25px;
+}
+
+.search-field input {
+    width: 100%;
+    padding: 12px 14px;
+
+    border: 1px solid #d8dee9;
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    margin-bottom: 12px;
+}
+
+.search-field button {
+    background-color: #0e223e;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 10px 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+    margin-right: 8px;
+}
+
+.search-field button:hover {
+    background-color: #16345d;
+}
+
+.show_clients {
+    background-color: #eef2f7 !important;
+    color: #0e223e !important;
+}
+
+.search-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}

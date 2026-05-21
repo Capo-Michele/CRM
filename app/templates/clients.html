@@ -8,7 +8,15 @@
     </div>
     <div class="search-field">
         <h4>Search client</h4>
-        <input type="text" name="search-button" onkeyup="searchTable()" placeholder="Search client">
+        <form method="get" action="/client" class="search_client">
+            <input type="search" name="search-field" placeholder="Search client"> <br>
+                <div class="search-buttons">
+                <button class="search_button" type="submit">Search</button> 
+        </form>
+            <form action="/client">
+                <button class="show_clients" type="submit">Show all clients</button>
+            </form>
+        </div>
     </div>
     <div class="active-contacts">
         <h3>
