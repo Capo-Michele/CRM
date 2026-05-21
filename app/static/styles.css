@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+
+
+h3 {
+    font-size: 1.2375rem;
+    color: #000000;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+li {
+    list-style: none;
+}
+.wrapper {
+    display: flex;
+}
+
+.main{
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
+    background-color: #fafbfe;
+}
+
+
+#sidebar{
+    width: 70px;
+    min-width: 70px;
+    z-index: 1000;
+    transition: all .25s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    background-color: #0e223e;
+}
+
+#sidebar.expand {
+    width: 260px;
+    min-width: 260px;
+}
+
+#toggle-button {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: 1rem 1.5rem;
+}
+
+#toggle-button i{
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.sidebar-logo {
+    margin: auto 0;
+}
+
+.sidebar-logo a{
+    color: #FFF;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span{
+    display: none;
+}
+
+.sidebar-nav {
+    padding: 2rem 0;
+    flex: 1 1 auto;
+}
+
+.sidebar-logo a {
+    position: relative;
+    top: -2.6px;
+}
+
+a.sidebar-link span {
+    position: relative;
+    top: -3.5px;
+}
+
+
+a.sidebar-link{
+    padding: .625rem 1.625rem;
+    color: #FFF;
+    display: block;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link i{
+    font-size: 1.1rem;
+    margin-right: 0.75rem;
+}
+
+a.sidebar-link:hover{
+    background-color: rgba(255, 255, 255, 0.75);
+    border-left: 3px solid #3b7ddd;
+}
+
+.sidebar-item{
+    position: relative;
+}
+
+#sidebar:not(.expand) .sidebar-item .sidebar-dropdown{
+    position: absolute;
+    top: 0;
+    left: 70px;
+    background-color: #0e2238;
+    padding: 0;
+    min-width: 15rem;
+    display: none;
+
+}
+
+#sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown{
+    display: block;
+    max-height: 15em;
+    width: 100%;
+    opacity: 1;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after{
+    border: solid;
+    border-width: 0 .075rem .075rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.4rem;
+    transform: rotate(-135deg);
+    transition: all .2s ease-out;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after{
+    transform: rotate(45deg);
+    transition: all .2s ease-out;;
+}
+
+.active-contacts h3{
+    color: rgb(15, 175, 0);
+}
+.inactive-contacts h3{
+    color: red;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-button {
+    background-color: #0e223e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-size: 18px;
+}
+
+.dropdown-button:hover {
+    background-color: #16345d;
+    transform: scale(1.05);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 140px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 100;
+    top: 0;
+    left: 100%;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+    width: 100%;
+    padding: 10px 14px;
+    border: none;
+    background: white;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.dropdown-content a {
+    display: block;
+    color: #0e223e;
+    text-decoration: none;
+    
+}
+
+.dropdown-content button:hover,
+.dropdown-content a:hover {
+    background-color: #f1f5fb;
+}
+
+/* Таблица */
+
+.client-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.client-table thead {
+    background-color: #0e223e;
+    color: white;
+}
+
+.client-table th,
+.client-table td {
+    padding: 14px 18px;
+    text-align: left;
+}
+
+.client-table tbody tr {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.client-table tbody tr:hover {
+    background-color: #f5f8fc;
+}
+
+.client-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.active-contacts_table,
+.inactive-contacts_table {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* input */
+
+
+.table_info_insert input {
+    width: 140px;
+}
+
+.table_info_insert input {
+    padding: 12px 14px;
+
+    border: 1px solid #d8dee9;
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    transition: 0.2s ease;
+}
+
+.table_info_insert input:focus {
+    outline: none;
+    border-color: #3b7ddd;
+
+    box-shadow: 0 0 0 3px rgba(59,125,221,0.15);
+}
+
+.table_info_insert button {
+    background-color: #0e223e;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 12px 18px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+/* fix */
+.table_info_insert button:hover {
+    background-color: #16345d;
+}
+
+.client-table {
+    table-layout: fixed;
+}
+
+.client-table td,
+.client-table th {
+    word-wrap: break-word;
+}
+
+.table_info_insert input {
+    width: 100%;
+    max-width: 120px;
+}
+
+.create-client-row td {
+    text-align: center;
+}
+
+/* search field */
+.search-field {
+    margin-bottom: 20px;
+}
+
+.search-field input {
+    padding: 10px 14px;
+    width: 250px;
+
+    border: 1px solid #d8dee9;
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+.search-field input:focus {
+    outline: none;
+    border-color: #3b7ddd;
+
+    box-shadow: 0 0 0 3px rgba(59,125,221,0.15);
+}
+
+/* inputs table */
+.create-client-row {
+    background-color: #f8fafc;
+}
+
+.create-client-row + tr td {
+    padding-top: 0;
+}
+
+.create-client-row + tr button {
+    min-width: 200px;
+}

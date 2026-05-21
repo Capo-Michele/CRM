@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- теги для того, чтобы нормально читались символы и для нормальной адоптации под мобильные девайсы   -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Подключение bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+   
+    
+    <title>CRM</title>
+    <!-- Добавили связть с style.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Подключение иконок -->
+    <link rel="stylesheet" href="https://cdn.lineicons.com/5.1/line/lineicons.css" />
+    <link rel="stylesheet" href="https://cdn.lineicons.com/5.1/solid/lineicons-solid.css" />
+ 
+</head>
+<body>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button id="toggle-button" class="toggle-button" type="button">
+                    <i class="lni lnis-dashboard-square-1"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="#">MyCRM</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="/" class="sidebar-link">
+                            <i class="lni lnis-notebook-1"></i>
+                        <span>My deals</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/client" class="sidebar-link">  
+                        <i class="lni lnis-user-4"></i>
+                        <span>Create client</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse" data-bs-target="#auth"
+                        aria-expanded="false" aria-controls="auth">
+                        <i class="lni lnis-shield-2"></i>
+                        <span>Auth</span>
+                    </a>
+                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">Login</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">Registration</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse" data-bs-target="#multi"
+                        aria-expanded="false" aria-controls="multi">
+                    <i class="lni lnis-line-dotted"></i>
+                    <span>Multi level</span>
+                    </a>
+                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" 
+                            data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                                Two links
+                            </a>
+                            <ul id="multi-two" class='sidebar-dropdown list-unstyled collapse'>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Link 1</a>
+                                </li>
+                                  <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Link 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lnis-message-3-text"></i>
+                        <span>Notification</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lnis-gear-1"></i>
+                        <span>Setting</span>
+                    </a>
+                </li>
+            </ul> 
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link">
+                   <i class="lni lnis-exit"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main p-3">
+            <div class="text-center">
+                <h1>
+                    <!-- TEST -->
+                </h1>
+            </div>
+            <div class="client_info">
+                <div class="content">
+                    {% block content%}
+                    NN
+                    {% endblock content%}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <!-- берём JS код из static -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Подключаем JS к bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html> 
