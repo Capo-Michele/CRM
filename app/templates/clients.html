@@ -18,6 +18,25 @@
             </form>
         </div>
     </div>
+    <div class="filter-field">
+        <h4>Filters</h4>
+        <div class="currency-filter">
+            <form method="get" action="/client" class="filter">
+                <select id="currency_filter" name="currency_filter" placeholder="All-curencies">
+                    <option disabled selected>Currency</option>
+                    <option value="RUB">RUB</option>
+                    <option value="BYN">BYN</option>
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                    <option value="CNY">CNY</option>
+                </select>
+                 <button class="implement-filters" type="submit">Apply filters</button> 
+            </form>
+            <form action="/client">
+                 <button type="submit">Reset</button>
+            </form>
+        </div>
+    </div>
     <div class="active-contacts">
         <h3>
             Active clients
