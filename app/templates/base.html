@@ -30,7 +30,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="/" class="sidebar-link">
+                    <a href="{{ url_for('main.index') }}" class="sidebar-link">
                             <i class="lni lnis-notebook-1"></i>
                         <span>My deals</span>
                     </a>
@@ -49,10 +49,10 @@
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Login</a>
+                            <a href="/login" class="sidebar-link">Login</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Registration</a>
+                            <a href="register" class="sidebar-link">Registration</a>
                         </li>
                     </ul>
                 </li>
@@ -93,13 +93,24 @@
                 </li>
             </ul> 
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="{{ url_for ('login.logout')}}" onclick="return confirm('You shure you wanna logout?')" class="sidebar-link">
                    <i class="lni lnis-exit"></i>
                     <span>Logout</span>
                 </a>
             </div>
         </aside>
         <div class="main p-3">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash-container">
+                        {% for message in messages %}
+                            <div class="flash-message">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
             <div class="text-center">
                 <h1>
                     <!-- TEST -->

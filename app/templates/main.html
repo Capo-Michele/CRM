@@ -1,0 +1,56 @@
+{% extends 'base.html'  %}
+
+{% block content %}
+<div class="dashboard-cards">
+
+    <div class="dashboard-card">
+        <h3>Total deals</h3>
+        <p>{{ total_deals }}</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Won deals</h3>
+        <p>{{ won_deals }}</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Active deals</h3>
+        <p>{{ active_deals }}</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Inactive deals</h3>
+        <p>{{ inactive_deals }}</p>
+    </div>
+
+</div>
+
+<div class="dashboard-cards">
+
+    <div class="dashboard-card">
+        <h3>Revenue RUB</h3>
+        <p>{{ revenue_rub }} RUB</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Revenue BYN</h3>
+        <p>{{ revenue_byn }} BYN</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Revenue EUR</h3>
+        <p>{{ revenue_eur }} EUR</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Revenue USD</h3>
+        <p>{{ revenue_usd }} USD</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Revenue CNY</h3>
+        <p>{{ revenue_cny }} CNY</p>
+    </div>
+
+</div>
+{%endblock%}
