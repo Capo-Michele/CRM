@@ -6,7 +6,7 @@ from app.extensions import db
 
 bp = Blueprint('main', __name__)
 
-@bp.route('/home')
+@bp.route('/')
 @login_required
 def index():
 
