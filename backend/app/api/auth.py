@@ -13,6 +13,7 @@ from app.schemas.user import UserLogin
 from app.schemas.user import Token
 from app.services.auth import verify_password
 from app.services.auth import create_access_token
+from app.models.organization import Organization
 
 router = APIRouter(
     prefix="/auth",
@@ -40,10 +41,17 @@ def register(
             detail="Email already registered"
         )
 
+    organization = Organization(
+    name=data.email
+)
+
+    db.add(organization)
+    db.flush()
+
     user = User(
         email=data.email,
         password_hash=hash_password(data.password),
-        organization_id=1
+        organization_id=organization.id
     )
 
     db.add(user)

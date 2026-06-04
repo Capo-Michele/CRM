@@ -4,6 +4,10 @@ from sqlalchemy.orm import mapped_column
 
 from app.db.base import Base
 
+from sqlalchemy.orm import relationship
+
+
+
 
 class Organization(Base):
     __tablename__ = "organizations"
@@ -16,5 +20,12 @@ class Organization(Base):
         String(255),
         nullable=False
     )
+
+    companies = relationship(
+        "Company",
+        cascade="all, delete-orphan"
+    )
+
+
 
     
