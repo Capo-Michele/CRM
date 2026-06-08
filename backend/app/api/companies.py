@@ -11,6 +11,10 @@ from app.schemas.company import CompanyUpdate
 from fastapi import HTTPException
 from app.services.auth import get_current_user
 from app.models.user import User
+from app.models.contact import Contact
+from app.schemas.contact import ContactResponse
+from app.models.deal import Deal
+from app.schemas.deal import DealResponse
 
 router = APIRouter(
     prefix="/companies",
@@ -48,17 +52,31 @@ def create_company(
     response_model=list[CompanyResponse]
 )
 def get_companies(
+    skip: int = 0,
+    limit: int = 20,
+    search: str | None = None,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    return (
-    db.query(Company)
-    .filter(
-        Company.organization_id
-        == current_user.organization_id
+    query = (
+        db.query(Company)
+        .filter(
+            Company.organization_id
+            == current_user.organization_id
+        )
     )
-    .all()
-)
+
+    if search:
+        query = query.filter(
+            Company.name.ilike(f"%{search}%")
+        )
+
+    return (
+        query
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )
 
 @router.get(
     "/{company_id}",
@@ -157,3 +175,71 @@ def update_company(
 
     return company
 
+@router.get(
+    "/{company_id}/contacts",
+    response_model=list[ContactResponse]
+)
+def get_company_contacts(
+    company_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    company = db.get(
+        Company,
+        company_id
+    )
+
+    if (
+        not company
+        or company.organization_id
+        != current_user.organization_id
+    ):
+        raise HTTPException(
+            status_code=404,
+            detail="Company not found"
+        )
+
+    return (
+        db.query(Contact)
+        .filter(
+            Contact.company_id == company_id,
+            Contact.organization_id
+            == current_user.organization_id
+        )
+        .all()
+    )
+
+
+@router.get(
+    "/{company_id}/deals",
+    response_model=list[DealResponse]
+)
+def get_company_deals(
+    company_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    company = db.get(
+        Company,
+        company_id
+    )
+
+    if (
+        not company
+        or company.organization_id
+        != current_user.organization_id
+    ):
+        raise HTTPException(
+            status_code=404,
+            detail="Company not found"
+        )
+
+    return (
+        db.query(Deal)
+        .filter(
+            Deal.company_id == company_id,
+            Deal.organization_id
+            == current_user.organization_id
+        )
+        .all()
+    )

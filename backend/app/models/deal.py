@@ -7,8 +7,11 @@ from sqlalchemy import Numeric
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
+from sqlalchemy import Enum
 
 from app.db.base import Base
+
+from app.models.enums import DealStatus
 
 
 class Deal(Base):
@@ -27,9 +30,9 @@ class Deal(Base):
         default=0
     )
 
-    status: Mapped[str] = mapped_column(
-        String(50),
-        default="NEW"
+    status: Mapped[DealStatus] = mapped_column(
+        Enum(DealStatus),
+        default=DealStatus.NEW
     )
 
     company_id: Mapped[int] = mapped_column(
@@ -40,7 +43,14 @@ class Deal(Base):
         ForeignKey("organizations.id")
     )
 
+    owner_id: Mapped[int | None] = mapped_column(
+        ForeignKey("users.id"),
+        nullable=True
+    )
+
     company = relationship(
         "Company",
         back_populates="deals"
     )
+
+    owner = relationship("User")

@@ -12,9 +12,9 @@ from sqlalchemy.orm import Session
 
 from app.db.database import get_db
 from app.models.user import User
+from app.core.config import settings
 
-
-SECRET_KEY = "change-me-in-env"
+SECRET_KEY = settings.SECRET_KEY
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -84,3 +84,15 @@ def get_current_user(
         )
 
     return user
+
+
+def require_admin(
+    current_user: User = Depends(get_current_user)
+):
+    if current_user.role != "admin":
+        raise HTTPException(
+            status_code=403,
+            detail="Admin access required"
+        )
+
+    return current_user

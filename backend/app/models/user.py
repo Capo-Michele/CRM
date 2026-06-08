@@ -10,6 +10,7 @@ from sqlalchemy.orm import mapped_column
 from app.db.base import Base
 
 
+
 class User(Base):
     __tablename__ = "users"
 
@@ -40,4 +41,9 @@ class User(Base):
 
     organization_id: Mapped[int] = mapped_column(
         ForeignKey("organizations.id")
+    )
+
+    role: Mapped[str] = mapped_column(
+    String(50),
+    default="admin"
     )

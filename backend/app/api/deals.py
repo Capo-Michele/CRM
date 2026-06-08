@@ -14,7 +14,7 @@ from app.schemas.deal import (
     DealUpdate
 )
 
-from app.services.auth import get_current_user
+from app.services.auth import get_current_user, require_admin
 from app.models.user import User
 
 
@@ -148,3 +148,62 @@ def delete_deal(
     return {
         "message": "Deal deleted"
     }
+
+@router.patch("/{deal_id}/assign/{user_id}")
+def assign_deal(
+    deal_id: int,
+    user_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_admin)
+):
+    deal = db.get(
+        Deal,
+        deal_id
+    )
+
+    if (
+        not deal
+        or deal.organization_id
+        != current_user.organization_id
+    ):
+        raise HTTPException(
+            status_code=404,
+            detail="Deal not found"
+        )
+
+    user = db.get(
+        User,
+        user_id
+    )
+
+    if (
+        not user
+        or user.organization_id
+        != current_user.organization_id
+    ):
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
+
+    deal.owner_id = user.id
+
+    db.commit()
+    db.refresh(deal)
+
+    return {
+        "message": "Deal assigned",
+        "deal_id": deal.id,
+        "owner_id": user.id
+    }
+
+@router.get(
+    "/my",
+    response_model=list[DealResponse]
+)
+def get_my_deals(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    return (
+        db.query(Deal).filter(Deal.owner_id == current_user.id, Deal.organization_id == current_user.organization_id).all())
